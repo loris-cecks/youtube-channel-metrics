@@ -1,0 +1,36 @@
+<% if (locals.channel) { %>
+  <div class="container my-4">
+    <div class="card shadow-sm rounded bg-light dark-mode-target">
+      <!-- Card Header -->
+      <div class="card-header">
+        <h5 class="card-title">Channel Information</h5>
+      </div>
+      <!-- Card Body -->
+      <div class="card-body">
+        <!-- Grid Layout for Details -->
+        <div class="row">
+          <!-- Channel Name -->
+          <div class="col-md-6 mb-3">
+            <p class="card-text"><strong>Name:</strong>
+              <%= channel.name %>
+            </p>
+          </div>
+          <!-- Subscribers Count -->
+          <div class="col-md-6 mb-3">
+            <p class="card-text"><strong>Subscribers:</strong>
+              <%= channel.subscribers %>
+            </p>
+          </div>
+        </div>
+        <div class="row">
+          <!-- Channel Description -->
+          <div class="col">
+            <p class="card-text"><strong>Description:</strong>
+              <%= channel.description %>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% } %>

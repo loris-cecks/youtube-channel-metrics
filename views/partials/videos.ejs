@@ -1,0 +1,61 @@
+<% if (locals.videos && videos.length) { %>
+  <div class="container mt-4 pb-5 my-4">
+    <div class="card shadow-sm rounded bg-light dark-mode-target">
+      <div class="card-body">
+        <div class="row d-none d-md-flex font-weight-bold">
+          <div class="col-1">#</div>
+          <div class="col-2">Thumbnail</div>
+          <div class="col-3">Title</div>
+          <div class="col-2">Duration</div>
+          <div class="col-1">Views</div>
+          <div class="col-1">Likes</div>
+          <div class="col-2">Comments</div>
+        </div>
+        <% videos.forEach((video, index)=> { %>
+          <div class="row border-bottom d-none d-md-flex">
+            <div class="col-1">
+              <%= index + 1 %>
+            </div>
+            <div class="col-2">
+              <img src="<%= video.thumbnail %>" alt="Video thumbnail" class="img-fluid rounded">
+            </div>
+            <div class="col-3">
+              <%= video.title %>
+            </div>
+            <div class="col-2">
+              <%= video.duration %>
+            </div>
+            <div class="col-1">
+              <%= video.views %>
+            </div>
+            <div class="col-1">
+              <%= video.likes %>
+            </div>
+            <div class="col-2">
+              <%= video.comments %>
+            </div>
+          </div>
+          <div class="d-md-none card mb-3 shadow-sm dark-mode-target">
+            <div class="card-body">
+              <h5 class="card-title">#<%= index + 1 %>
+                  <%= video.title %>
+              </h5>
+              <p class="card-text"><small class="text-muted">
+                  <%= video.duration %>
+                </small></p>
+              <p class="card-text">
+                <%= video.description %>
+              </p>
+              <p class="card-text">Views: <%= video.views %>
+              </p>
+              <p class="card-text">Likes: <%= video.likes %>
+              </p>
+              <p class="card-text">Comments: <%= video.comments %>
+              </p>
+            </div>
+          </div>
+          <% }); %>
+      </div>
+    </div>
+  </div>
+  <% } %>

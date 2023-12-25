@@ -1,0 +1,8 @@
+body.dark-mode {
+  background-color: #212529 !important;
+}
+
+.dark-mode-target.dark-mode {
+  background-color: #343a40 !important;
+  color: #ffffff;
+}

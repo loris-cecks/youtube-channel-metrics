@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YT Channel Metrics</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/dark-mode.css">
+
+</head>
+
+<body>
+
+  <%- include('partials/header') %>
+
+    <div class="container mt-4 ">
+      <!-- Card Wrapper for Form -->
+      <div class="card shadow-sm rounded dark-mode-target">
+        <div class="card-header bg-light dark-mode-target">
+          <h5 class="card-title text-center">Enter Channel URL</h5>
+        </div>
+        <div class="card-body bg-light dark-mode-target">
+          <form method="POST" action="/" class="mb-4">
+            <input type="text" class="form-control form-control-lg text-center mb-3 rounded-pill" id="channelLink"
+              name="channelLink" placeholder="https://www.youtube.com/@[handle]" required>
+            <button type="submit" class="btn btn-primary btn-lg w-100 rounded-pill">Get Metrics</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Error Message -->
+      <% if (locals.error) { %>
+        <div class="alert alert-danger mt-3 rounded">
+          <%= error %>
+        </div>
+        <% } %>
+    </div>
+
+
+    <%- include('partials/channel') %>
+
+      <%- include('partials/videos') %>
+
+        <%- include('partials/footer') %>
+
+          <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+          <script src="js/dark-mode.js"></script>
+</body>
+
+</html>
