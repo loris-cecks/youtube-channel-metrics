@@ -1,56 +1,69 @@
 <% if (locals.videos && videos.length) { %>
+  <!-- Contenitore per i video -->
   <div class="container mt-4 pb-5 my-4">
+    <!-- Card per i dettagli dei video -->
     <div class="card shadow-sm rounded bg-light dark-mode-target">
       <div class="card-body">
+        <!-- Intestazione della tabella dei video per schermi medi e grandi -->
         <div class="row d-none d-md-flex font-weight-bold">
-          <div class="col-1">#</div>
-          <div class="col-2">Thumbnail</div>
-          <div class="col-3">Title</div>
-          <div class="col-2">Duration</div>
-          <div class="col-1">Views</div>
-          <div class="col-1">Likes</div>
-          <div class="col-2">Comments</div>
+          <div class="col-1">#</div> <!-- Numero di sequenza -->
+          <div class="col-2">Thumbnail</div> <!-- Miniatura del video -->
+          <div class="col-3">Title</div> <!-- Titolo del video -->
+          <div class="col-2">Duration</div> <!-- Durata del video -->
+          <div class="col-1">Views</div> <!-- Visualizzazioni del video -->
+          <div class="col-1">Likes</div> <!-- Mi piace del video -->
+          <div class="col-2">Comments</div> <!-- Commenti sul video -->
         </div>
+        <!-- Elenco dei video -->
         <% videos.forEach((video, index)=> { %>
+          <!-- Riga della tabella per ogni video per schermi medi e grandi -->
           <div class="row border-bottom d-none d-md-flex">
             <div class="col-1">
-              <%= index + 1 %>
+              <%= index + 1 %> <!-- Numero di sequenza -->
             </div>
             <div class="col-2">
-              <img src="<%= video.thumbnail %>" alt="Video thumbnail" class="img-fluid rounded">
+              <!-- Miniatura del video -->
+              <img src="<%= video.thumbnail %>" alt="Miniatura del video" class="img-fluid rounded">
             </div>
             <div class="col-3">
-              <%= video.title %>
+              <%= video.title %> <!-- Titolo del video -->
             </div>
             <div class="col-2">
-              <%= video.duration %>
+              <%= video.duration %> <!-- Durata del video -->
             </div>
             <div class="col-1">
-              <%= video.views %>
+              <%= video.views %> <!-- Visualizzazioni del video -->
             </div>
             <div class="col-1">
-              <%= video.likes %>
+              <%= video.likes %> <!-- Mi piace del video -->
             </div>
             <div class="col-2">
-              <%= video.comments %>
+              <%= video.comments %> <!-- Commenti sul video -->
             </div>
           </div>
+          <!-- Card per ogni video per schermi piccoli -->
           <div class="d-md-none card mb-3 shadow-sm dark-mode-target">
             <div class="card-body">
+              <!-- Titolo e numero del video -->
               <h5 class="card-title">#<%= index + 1 %>
                   <%= video.title %>
               </h5>
+              <!-- Durata del video -->
               <p class="card-text"><small class="text-muted">
                   <%= video.duration %>
                 </small></p>
+              <!-- Descrizione del video -->
               <p class="card-text">
                 <%= video.description %>
               </p>
-              <p class="card-text">Views: <%= video.views %>
+              <!-- Visualizzazioni del video -->
+              <p class="card-text">Visualizzazioni: <%= video.views %>
               </p>
-              <p class="card-text">Likes: <%= video.likes %>
+              <!-- Mi piace del video -->
+              <p class="card-text">Mi piace: <%= video.likes %>
               </p>
-              <p class="card-text">Comments: <%= video.comments %>
+              <!-- Commenti sul video -->
+              <p class="card-text">Commenti: <%= video.comments %>
               </p>
             </div>
           </div>
