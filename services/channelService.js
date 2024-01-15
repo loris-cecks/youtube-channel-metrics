@@ -1,40 +1,40 @@
-// Funzione asincrona per ottenere l'ID di un canale YouTube dato il suo handle (nome utente)
+// Asynchronous function to get the ID of a YouTube channel given its handle (username)
 async function getChannelId(handle) {
-  // Costruzione dell'URL per la ricerca del canale su YouTube
+  // Constructing the URL to search for the channel on YouTube
   const url = `https://www.googleapis.com/youtube/v3/search?key=${process.env.YOUTUBE_API_KEY}&part=snippet&type=channel&q=${handle}&maxResults=1`;
-  // Effettua la richiesta HTTP all'API di YouTube
+  // Make an HTTP request to the YouTube API
   const response = await fetch(url);
-  // Conversione della risposta in formato JSON
+  // Convert the response to JSON format
   const data = await response.json();
-  // Estrazione dell'ID del canale dai dati ottenuti, se disponibile
+  // Extract the channel ID from the obtained data, if available
   const channelId = data.items?.[0]?.snippet.channelId;
 
-  // Lancia un errore se il canale non viene trovato
+  // Throw an error if the channel is not found
   if (!channelId) {
-    throw new Error('Canale non trovato');
+    throw new Error('Channel not found');
   }
-  // Ritorna l'ID del canale
+  // Return the channel ID
   return channelId;
 }
 
-// Funzione asincrona per ottenere i dettagli di un canale YouTube dato il suo ID
+// Asynchronous function to get the details of a YouTube channel given its ID
 async function getChannelDetails(channelId) {
-  // Costruzione dell'URL per ottenere i dettagli del canale da YouTube
+  // Constructing the URL to get channel details from YouTube
   const channelUrl = `https://www.googleapis.com/youtube/v3/channels?key=${process.env.YOUTUBE_API_KEY}&id=${channelId}&part=snippet,statistics`;
-  // Effettua la richiesta HTTP all'API di YouTube
+  // Make an HTTP request to the YouTube API
   const response = await fetch(channelUrl);
-  // Conversione della risposta in formato JSON
+  // Convert the response to JSON format
   const data = await response.json();
-  // Estrazione dei dati del canale dalla risposta
+  // Extract the channel data from the response
   const channelData = data.items[0];
 
-  // Ritorna un oggetto con i dettagli rilevanti del canale
+  // Return an object with relevant channel details
   return {
-    name: channelData.snippet.title, // Nome del canale
-    description: channelData.snippet.description, // Descrizione del canale
-    subscribers: channelData.statistics.subscriberCount, // Numero di iscritti
+    name: channelData.snippet.title, // Channel name
+    description: channelData.snippet.description, // Channel description
+    subscribers: channelData.statistics.subscriberCount, // Number of subscribers
   };
 }
 
-// Esportazione delle funzioni per l'uso in altri moduli
+// Exporting functions for use in other modules
 module.exports = { getChannelId, getChannelDetails };

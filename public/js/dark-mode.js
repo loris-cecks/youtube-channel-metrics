@@ -1,31 +1,31 @@
-// Ascolta l'evento 'DOMContentLoaded' che indica che il DOM è completamente caricato
+// Listen for the 'DOMContentLoaded' event, which indicates that the DOM is fully loaded
 document.addEventListener('DOMContentLoaded', () => {
-  // Ottieni l'elemento dell'interruttore per il tema scuro
+  // Get the dark mode toggle element
   const toggle = document.getElementById('darkModeToggle');
-  // Se l'interruttore non è presente, scrivi un errore nella console e interrompi l'esecuzione
+  // If the toggle is not found, write an error to the console and exit
   if (!toggle) {
-    console.error('Interruttore per il tema scuro non trovato');
+    console.error('Dark mode toggle not found');
     return;
   }
 
-  // Verifica se il tema scuro è stato precedentemente salvato come preferenza e lo applica
+  // Check if dark mode was previously saved as a preference and apply it
   const darkModeSaved = localStorage.getItem('darkMode') === 'true';
-  setDarkMode(darkModeSaved); // Applica il tema scuro se necessario
-  toggle.checked = darkModeSaved; // Imposta lo stato dell'interruttore in base alla preferenza salvata
+  setDarkMode(darkModeSaved); // Apply dark mode if necessary
+  toggle.checked = darkModeSaved; // Set the toggle state based on the saved preference
 
-  // Aggiungi un gestore dell'evento 'change' all'interruttore per attivare/disattivare il tema scuro
+  // Add a 'change' event handler to the toggle to enable/disable dark mode
   toggle.addEventListener('change', () => {
-    const isEnabled = toggle.checked; // Controlla lo stato dell'interruttore
-    setDarkMode(isEnabled); // Applica il tema scuro in base allo stato dell'interruttore
-    localStorage.setItem('darkMode', isEnabled); // Salva la preferenza del tema scuro
+    const isEnabled = toggle.checked; // Check the toggle state
+    setDarkMode(isEnabled); // Apply dark mode based on the toggle state
+    localStorage.setItem('darkMode', isEnabled); // Save the dark mode preference
   });
 });
 
-// Definisce la funzione per attivare o disattivare il tema scuro
+// Defines the function to enable or disable dark mode
 function setDarkMode(enabled) {
-  // Aggiunge o rimuove la classe 'dark-mode' al body a seconda se il tema scuro è attivato
+  // Add or remove the 'dark-mode' class to the body depending on whether dark mode is enabled
   document.body.classList.toggle('dark-mode', enabled);
-  // Aggiunge o rimuove la classe 'dark-mode' a tutti gli elementi con classe 'dark-mode-target'
+  // Add or remove the 'dark-mode' class to all elements with the 'dark-mode-target' class
   document.querySelectorAll('.dark-mode-target').forEach(target => {
     target.classList.toggle('dark-mode', enabled);
   });

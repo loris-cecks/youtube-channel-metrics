@@ -1,69 +1,69 @@
 <% if (locals.videos && videos.length) { %>
-  <!-- Contenitore per i video -->
+  <!-- Container for videos -->
   <div class="container mt-4 pb-5 my-4">
-    <!-- Card per i dettagli dei video -->
+    <!-- Card for video details -->
     <div class="card shadow-sm rounded bg-light dark-mode-target">
       <div class="card-body">
-        <!-- Intestazione della tabella dei video per schermi medi e grandi -->
+        <!-- Video table header for medium and large screens -->
         <div class="row d-none d-md-flex font-weight-bold">
-          <div class="col-1">#</div> <!-- Numero di sequenza -->
-          <div class="col-2">Thumbnail</div> <!-- Miniatura del video -->
-          <div class="col-3">Title</div> <!-- Titolo del video -->
-          <div class="col-2">Duration</div> <!-- Durata del video -->
-          <div class="col-1">Views</div> <!-- Visualizzazioni del video -->
-          <div class="col-1">Likes</div> <!-- Mi piace del video -->
-          <div class="col-2">Comments</div> <!-- Commenti sul video -->
+          <div class="col-1">#</div> <!-- Sequence number -->
+          <div class="col-2">Thumbnail</div> <!-- Video thumbnail -->
+          <div class="col-3">Title</div> <!-- Video title -->
+          <div class="col-2">Duration</div> <!-- Video duration -->
+          <div class="col-1">Views</div> <!-- Video views -->
+          <div class="col-1">Likes</div> <!-- Video likes -->
+          <div class="col-2">Comments</div> <!-- Comments on the video -->
         </div>
-        <!-- Elenco dei video -->
+        <!-- List of videos -->
         <% videos.forEach((video, index)=> { %>
-          <!-- Riga della tabella per ogni video per schermi medi e grandi -->
+          <!-- Video table row for each video for medium and large screens -->
           <div class="row border-bottom d-none d-md-flex">
             <div class="col-1">
-              <%= index + 1 %> <!-- Numero di sequenza -->
+              <%= index + 1 %> <!-- Sequence number -->
             </div>
             <div class="col-2">
-              <!-- Miniatura del video -->
-              <img src="<%= video.thumbnail %>" alt="Miniatura del video" class="img-fluid rounded">
+              <!-- Video thumbnail -->
+              <img src="<%= video.thumbnail %>" alt="Video thumbnail" class="img-fluid rounded">
             </div>
             <div class="col-3">
-              <%= video.title %> <!-- Titolo del video -->
+              <%= video.title %> <!-- Video title -->
             </div>
             <div class="col-2">
-              <%= video.duration %> <!-- Durata del video -->
+              <%= video.duration %> <!-- Video duration -->
             </div>
             <div class="col-1">
-              <%= video.views %> <!-- Visualizzazioni del video -->
+              <%= video.views %> <!-- Video views -->
             </div>
             <div class="col-1">
-              <%= video.likes %> <!-- Mi piace del video -->
+              <%= video.likes %> <!-- Video likes -->
             </div>
             <div class="col-2">
-              <%= video.comments %> <!-- Commenti sul video -->
+              <%= video.comments %> <!-- Comments on the video -->
             </div>
           </div>
-          <!-- Card per ogni video per schermi piccoli -->
+          <!-- Card for each video for small screens -->
           <div class="d-md-none card mb-3 shadow-sm dark-mode-target">
             <div class="card-body">
-              <!-- Titolo e numero del video -->
+              <!-- Video title and number -->
               <h5 class="card-title">#<%= index + 1 %>
                   <%= video.title %>
               </h5>
-              <!-- Durata del video -->
+              <!-- Video duration -->
               <p class="card-text"><small class="text-muted">
                   <%= video.duration %>
                 </small></p>
-              <!-- Descrizione del video -->
+              <!-- Video description -->
               <p class="card-text">
                 <%= video.description %>
               </p>
-              <!-- Visualizzazioni del video -->
-              <p class="card-text">Visualizzazioni: <%= video.views %>
+              <!-- Video views -->
+              <p class="card-text">Views: <%= video.views %>
               </p>
-              <!-- Mi piace del video -->
-              <p class="card-text">Mi piace: <%= video.likes %>
+              <!-- Video likes -->
+              <p class="card-text">Likes: <%= video.likes %>
               </p>
-              <!-- Commenti sul video -->
-              <p class="card-text">Commenti: <%= video.comments %>
+              <!-- Comments on the video -->
+              <p class="card-text">Comments: <%= video.comments %>
               </p>
             </div>
           </div>

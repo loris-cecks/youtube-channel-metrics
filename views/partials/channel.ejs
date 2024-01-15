@@ -1,33 +1,33 @@
 <% if (locals.channel) { %>
-  <!-- Contenitore delle informazioni del canale -->
+  <!-- Container for channel information -->
   <div class="container my-4">
-    <!-- Card per le informazioni del canale -->
+    <!-- Card for channel information -->
     <div class="card shadow-sm rounded bg-light dark-mode-target">
-      <!-- Intestazione della card -->
+      <!-- Card header -->
       <div class="card-header">
-        <h5 class="card-title">Informazioni sul Canale</h5>
+        <h5 class="card-title">Channel Information</h5>
       </div>
-      <!-- Corpo della card -->
+      <!-- Body of the card -->
       <div class="card-body">
-        <!-- Layout a griglia per i dettagli -->
+        <!-- Grid layout for details -->
         <div class="row">
-          <!-- Nome del canale -->
+          <!-- Channel name -->
           <div class="col-md-6 mb-3">
-            <p class="card-text"><strong>Nome:</strong>
+            <p class="card-text"><strong>Name:</strong>
               <%= channel.name %>
             </p>
           </div>
-          <!-- Numero di iscritti -->
+          <!-- Number of subscribers -->
           <div class="col-md-6 mb-3">
-            <p class="card-text"><strong>Iscritti:</strong>
+            <p class="card-text"><strong>Subscribers:</strong>
               <%= channel.subscribers %>
             </p>
           </div>
         </div>
         <div class="row">
-          <!-- Descrizione del canale -->
+          <!-- Channel description -->
           <div class="col">
-            <p class="card-text"><strong>Descrizione:</strong>
+            <p class="card-text"><strong>Description:</strong>
               <%= channel.description %>
             </p>
           </div>

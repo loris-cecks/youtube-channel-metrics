@@ -1,47 +1,47 @@
-// Importazione del metodo getChannelId dal modulo channelService
+// Importing the getChannelId method from the channelService module
 const { getChannelId } = require('./channelService');
 
-// Funzione asincrona per cercare i video di un canale YouTube tramite API
+// Asynchronous function to search for YouTube channel videos using the API
 async function searchChannelVideos(channelId) {
-  // Costruzione dell'URL per la ricerca dei video su YouTube
+  // Constructing the URL for searching videos on YouTube
   const searchUrl = `https://www.googleapis.com/youtube/v3/search?key=${process.env.YOUTUBE_API_KEY}&channelId=${channelId}&part=snippet,id&order=date&maxResults=10`;
-  // Richiesta HTTP all'API di YouTube
+  // HTTP request to the YouTube API
   const response = await fetch(searchUrl);
-  // Estrazione dei dati JSON dalla risposta
+  // Extracting JSON data from the response
   const data = await response.json();
-  // Ritorno degli elementi video, o un array vuoto se non presenti
+  // Returning video items, or an empty array if none are present
   return data.items || [];
 }
 
-// Funzione asincrona per ottenere i dettagli di un video YouTube tramite API
+// Asynchronous function to get YouTube video details using the API
 async function getVideoDetails(videoId) {
-  // Costruzione dell'URL per i dettagli del video su YouTube
+  // Constructing the URL for video details on YouTube
   const detailsUrl = `https://www.googleapis.com/youtube/v3/videos?key=${process.env.YOUTUBE_API_KEY}&id=${videoId}&part=statistics,contentDetails`;
-  // Richiesta HTTP all'API di YouTube
+  // HTTP request to the YouTube API
   const response = await fetch(detailsUrl);
-  // Estrazione dei dati JSON dalla risposta
+  // Extracting JSON data from the response
   const data = await response.json();
-  // Estrazione delle statistiche e della durata del video dai dati
+  // Extracting video statistics and duration from the data
   const videoStatistics = data.items[0].statistics;
   const videoDuration = data.items[0].contentDetails.duration;
-  // Ritorno delle statistiche e della durata del video
+  // Returning video statistics and duration
   return { ...videoStatistics, duration: videoDuration };
 }
 
-// Funzione asincrona per recuperare i video a partire da un identificativo di canale
+// Asynchronous function to retrieve videos from a channel identifier
 async function fetchVideos(handle) {
-  // Sanitizzazione dell'handle del canale per sicurezza
+  // Sanitizing the channel handle for security
   const sanitizedHandle = handle.replace(/[^a-zA-Z0-9_-]/g, '');
-  // Ottenimento dell'ID del canale tramite l'handle
+  // Obtaining the channel ID using the handle
   const channelId = await getChannelId(sanitizedHandle);
-  // Ricerca dei video del canale tramite ID
+  // Searching for channel videos using the ID
   const videos = await searchChannelVideos(channelId);
 
-  // Elaborazione dei dettagli di ogni video
+  // Processing details of each video
   return Promise.all(videos.map(async video => {
-    // Ottenimento dei dettagli del video
+    // Obtaining video details
     const videoDetails = await getVideoDetails(video.id.videoId);
-    // Costruzione dell'oggetto con i dettagli del video
+    // Constructing the object with video details
     return {
       title: video.snippet.title,
       views: videoDetails.viewCount,
@@ -53,5 +53,5 @@ async function fetchVideos(handle) {
   }));
 }
 
-// Esportazione delle funzioni per l'utilizzo in altri moduli
+// Exporting functions for use in other modules
 module.exports = { fetchVideos, getVideoDetails };

@@ -1,8 +1,11 @@
+/* Apply a dark background color to the body element when dark mode is enabled */
 body.dark-mode {
   background-color: #212529 !important;
 }
 
+/* Apply dark mode styles to elements with the 'dark-mode-target' class */
 .dark-mode-target.dark-mode {
   background-color: #343a40 !important;
   color: #ffffff;
+  /* Set text color to white in dark mode */
 }
